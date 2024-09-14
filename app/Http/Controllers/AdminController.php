@@ -274,4 +274,25 @@ class AdminController extends Controller
         }
     }
 
+    public function add_contact(Request $request)
+    {        
+        $submit = $request['submit'];
+        if($submit == "submit"){
+            $request->validate([
+                'account_name'=>'required',
+                'phone'=>'required|min:10',
+            ]);
+
+            //create account
+            $account = new Account;
+            $account->account_name = $request['account_name'];
+            $account->phone = $request['phone'];
+            $account->website = $request['website'];
+            $account->save();
+
+            return redirect('/accounts/manage-contacts');
+        }
+        return view('accounts/add_contact');
+
+    }
 }
