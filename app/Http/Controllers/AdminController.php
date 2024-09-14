@@ -279,20 +279,23 @@ class AdminController extends Controller
         $submit = $request['submit'];
         if($submit == "submit"){
             $request->validate([
-                'account_name'=>'required',
+                'contact_name'=>'required',
+                'account_id'=>'required',
                 'phone'=>'required|min:10',
             ]);
 
-            //create account
-            $account = new Account;
-            $account->account_name = $request['account_name'];
-            $account->phone = $request['phone'];
-            $account->website = $request['website'];
-            $account->save();
+            //create contact
+            $contact = new Contact;
+            $contact->contact_name = $request['contact_name'];
+            $contact->account_id = $request['account_id'];
+            $contact->phone = $request['phone'];
+            $contact->email = $request['email'];
+            $contact->save();
 
-            return redirect('/accounts/manage-contacts');
+            return redirect('/contacts/manage-contacts');
         }
-        return view('accounts/add_contact');
+        $data['account_list'] = Account::all();
+        return view('contacts/add_contact')->with($data);
 
     }
 }
