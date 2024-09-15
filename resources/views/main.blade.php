@@ -39,12 +39,12 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle"
                                 data-toggle="dropdown"><span
-                                    class="hidden-xs">{{$user[0]['name']}}</span> </a>
+                                    class="hidden-xs"></span> </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
                                     <div class="pull-left user-img">
                                     </div>
-                                    <p class="text-left">{{$user[0]['name']}}<small>{{$user[0]['email']}}</small> </p>
+                                    <p class="text-left"><small></small> </p>
                                 </li>
                                 <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
                                 <li role="separator" class="divider"></li>
@@ -60,7 +60,7 @@
                 <div class="user-panel">
                     <div class="image text-center"></div>
                     <div class="info">
-                        <p>{{$user[0]['name']}}</p>
+                        <p></p>
                     </div>
                 </div>
                 <ul class="sidebar-menu" data-widget="tree">

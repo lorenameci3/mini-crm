@@ -35,9 +35,7 @@ class AdminController extends Controller
         $data['contacts'] = Contact::count();
         $data['deals'] = Deal::count();
         $data['user'] = User::all();
-        $user = \Auth::user();
-        // dd($user);
-        return view('dashboard')->with($data, $user);
+        return view('dashboard')->with($data);
     }
     public function logout() 
     {
