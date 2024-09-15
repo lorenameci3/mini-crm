@@ -83,7 +83,7 @@ class AdminController extends Controller
 
     public function manage_leads()
     {
-        $data['leads'] = Lead::all();
+        $data['leads'] = Lead::paginate(12);
 
         return view('leads/manage_leads')->with($data);
     }
@@ -205,19 +205,19 @@ class AdminController extends Controller
 
     public function manage_accounts()
     {
-        $data['accounts'] = Account::all();
+        $data['accounts'] = Account::paginate(12);
 
         return view('accounts/manage_accounts')->with($data);
     }
     public function manage_contacts()
     {
-        $data['contacts'] = Contact::with('getAccountDetail')->get();
+        $data['contacts'] = Contact::with('getAccountDetail')->paginate(12);
 
         return view('contacts/manage_contacts')->with($data);
     }
     public function manage_deals()
     {
-        $data['deals'] = Deal::with('getAccountDetail')->with('getContactDetail')->get();
+        $data['deals'] = Deal::with('getAccountDetail')->with('getContactDetail')->paginate(12);
 
         return view('deals/manage_deals')->with($data);
     }
