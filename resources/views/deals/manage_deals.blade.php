@@ -44,12 +44,12 @@
                                                         <td>{{ $deal->getAccountDetail->account_name }}</td>
                                                         <td>{{ $deal->getContactDetail->contact_name }}</td>
                                                         <td class="d-flex justify-between">
-                                                            <a href=""
+                                                            <a href="{{url('/deals/edit-deal/'.$deal->id)}}"
                                                             class="btn btn-primary btn-sm">
                                                                 <i class="fa fa-edit p-2"></i>
                                                             </a>
-                                                            <a href=""
-                                                            onclick="return confirm('Are you sure you want to delete this lead.')"
+                                                            <a href="{{url('/deals/delete-deal/'.$deal->id)}}"
+                                                            onclick="return confirm('Are you sure you want to delete this deal.')"
                                                             class="btn btn-danger btn-sm"><i class="fa fa-trash p-2"></i></a>
                                                         </td>
                                                     </tr>

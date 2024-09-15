@@ -40,11 +40,11 @@
                                                         <td>{{ $contact->email}}</td>
                                                         <td>{{ $contact->phone }}</td>
                                                         <td class="d-flex justify-between">
-                                                            <a href=""
+                                                            <a href="{{url('/contacts/edit-contact/'.$contact->id)}}"
                                                             class="btn btn-primary btn-sm">
                                                                 <i class="fa fa-edit p-2"></i>
                                                             </a>
-                                                            <a href=""
+                                                            <a href="{{url('/contacts/delete-contact/'.$contact->id)}}"
                                                             onclick="return confirm('Are you sure you want to delete this lead.')"
                                                             class="btn btn-danger btn-sm"><i class="fa fa-trash p-2"></i></a>
                                                         </td>

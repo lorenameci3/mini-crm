@@ -38,9 +38,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/manage-contacts', [AdminController::class, 'manage_contacts']);
         Route::get('/add-contact', [AdminController::class, 'add_contact']);
         Route::post('/add-contact', [AdminController::class, 'add_contact']);
+        Route::get('/edit-contact/{id}', [AdminController::class, 'edit_contact']);
+        Route::post('/edit-contact/{id}', [AdminController::class, 'edit_contact']);
+        Route::get('/delete-contact/{id}', [AdminController::class, 'delete_contact']);
     });
     Route::group(['prefix' => 'deals'], function(){
         Route::get('/manage-deals', [AdminController::class, 'manage_deals']);
+        Route::get('/add-deal', [AdminController::class, 'add_deal']);
+        Route::post('/add-deal', [AdminController::class, 'add_deal']);
+        Route::get('/edit-deal/{id}', [AdminController::class, 'edit_deal']);
+        Route::post('/edit-deal/{id}', [AdminController::class, 'edit_deal']);
+        Route::get('/delete-deal/{id}', [AdminController::class, 'delete_deal']);
 
     });
 });

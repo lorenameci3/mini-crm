@@ -30,7 +30,14 @@ class AdminController extends Controller
 
     public function dashboard() 
     {
-        return view('dashboard');
+        $data['leads'] = Lead::count();
+        $data['accounts'] = Account::count();
+        $data['contacts'] = Contact::count();
+        $data['deals'] = Deal::count();
+        $data['user'] = User::all();
+        $user = \Auth::user();
+        // dd($user);
+        return view('dashboard')->with($data, $user);
     }
     public function logout() 
     {
@@ -297,5 +304,118 @@ class AdminController extends Controller
         $data['account_list'] = Account::all();
         return view('contacts/add_contact')->with($data);
 
+    }
+
+    public function edit_contact($id, Request $request)
+    {
+        $contact = Contact::find($id);
+        if($contact == ""){
+            return redirect('/contacts/manage-contacts');
+        }
+
+        $submit = $request['submit'];
+        if($submit == "submit"){
+            $request->validate([
+                'contact_name'=>'required',
+                'account_id'=>'required',
+                'phone'=>'required|min:10',
+            ]);
+
+            $contact->contact_name = $request['contact_name'];
+            $contact->account_id = $request['account_id'];
+            $contact->phone = $request['phone'];
+            $contact->email = $request['email'];
+            $contact->save();
+
+            return redirect('/contacts/manage-contacts');
+        }
+        $data['contact_details'] = $contact;
+        $data['account_list'] = Account::all();
+        return view('contacts/edit_contact')->with($data);
+    }
+
+    public function delete_contact($id)
+    {
+        $contact = Contact::find($id);
+        if($contact == ""){
+            return redirect('/contacts/manage-contacts');
+        }else {
+            $contact->delete();
+            return redirect('/contacts/manage-contacts');
+        }
+    }
+    
+    public function add_deal(Request $request)
+    {        
+        $submit = $request['submit'];
+        if($submit == "submit"){
+            $request->validate([
+                'deal_name' => 'required',
+                'closing_date' => 'required',
+                'deal_stage' => 'required',
+                'account_id' => 'required',
+                'contact_id' => 'required',
+            ]);
+
+            //create deal
+            $deal = new Deal;
+            $deal->amount = $request['amount'];
+            $deal->deal_name = $request['deal_name'];
+            $deal->account_id = $request['account_id'];
+            $deal->contact_id = $request['contact_id'];
+            $deal->closing_date = $request['closing_date'];
+            $deal->deal_stage = $request['deal_stage'];
+            $deal->save();
+
+            return redirect('/deals/manage-deals');
+        }
+        $data['accounts'] = Account::all();
+        $data['contacts'] = Contact::all();
+        return view('deals/add_deal')->with($data);
+
+    }
+
+    public function delete_deal($id)
+    {
+        $deal = Deal::find($id);
+        if($deal == ""){
+            return redirect('/deals/manage-deals');
+        }else {
+            $deal->delete();
+            return redirect('/deals/manage-deals');
+        }
+    }
+
+    public function edit_deal($id, Request $request)
+    {
+        $deal = Deal::find($id);
+        if($deal == ""){
+            return redirect('/deals/manage-deals');
+        }
+
+        $submit = $request['submit'];
+        if($submit == "submit"){
+            $request->validate([
+                'deal_name' => 'required',
+                'closing_date' => 'required',
+                'deal_stage' => 'required',
+                'account_id' => 'required',
+                'contact_id' => 'required',
+            ]);
+
+            $deal->amount = $request['amount'];
+            $deal->deal_name = $request['deal_name'];
+            $deal->account_id = $request['account_id'];
+            $deal->contact_id = $request['contact_id'];
+            $deal->closing_date = $request['closing_date'];
+            $deal->deal_stage = $request['deal_stage'];
+            $deal->save();
+
+            return redirect('/deals/manage-deals');
+        }
+        $data['deal_details'] = $deal;
+        $data['accounts'] = Account::all();
+        $data['contacts'] = Contact::all();
+        return view('deals/edit_deal')->with($data);
     }
 }
