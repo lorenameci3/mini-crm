@@ -69,7 +69,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                {!! $leads->links() !!}
+                                <!-- {!! $leads->links() !!} -->
                             </div>
                         </div>
                     </div>

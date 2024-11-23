@@ -40,15 +40,15 @@
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback">
                                             <label class="control-label">Amount <span class="text-danger">*</span></label>
-                                            <input class="form-control" placeholder="Amount" type="text" 
-                                            name="amount" >
+                                            <input class="form-control" placeholder="Amount" type="number" 
+                                            name="amount" value="150">
                                             <span class="fa fa-user form-control-feedback" aria-hidden="true"></span> 
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group has-feedback">
                                             <label class="control-label">Deal Name <span class="text-danger">*</span></label>
-                                            <input class="form-control" placeholder="Deal Name" type="text" name="deal_name" >
+                                            <input class="form-control" placeholder="Deal Name" type="text" name="deal_name">
                                             <span class="fa fa-user form-control-feedback" aria-hidden="true"></span> 
                                         </div>
                                         @error('deal_name')

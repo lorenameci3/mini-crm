@@ -46,9 +46,7 @@ class AdminController extends Controller
 
     public function add_lead(Request $request)
     {        
-        // dd($request);
         $submit = $request['submit'];
-        // dd($submit);
         if($submit == "submit"){
             $request->validate([
                 'firstname'=>'required',
@@ -76,14 +74,13 @@ class AdminController extends Controller
 
             return redirect('/leads/manage-leads');
         }
-        // dd(11);
         return view('leads/add_lead');
 
     }
 
     public function manage_leads()
     {
-        $data['leads'] = Lead::paginate(12);
+        $data['leads'] = Lead::paginate(10);
 
         return view('leads/manage_leads')->with($data);
     }
@@ -191,8 +188,10 @@ class AdminController extends Controller
             $deal->closing_date = $request['closing_date'];
             $deal->deal_stage = $request['deal_stage'];
             $deal->account_id = $account->id;
-            $deal->contact_id = $account->id;
+            $deal->contact_id = $contact->id;
+            // dd($deal);
             $deal->save();
+
 
             //delete of old lead
             $lead->delete();

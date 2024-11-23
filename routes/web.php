@@ -15,7 +15,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'leads'], function(){
         Route::get('/add-lead', [AdminController::class, 'add_lead'])->name('add-lead');
-        Route::post('/add-lead', [AdminController::class, 'add_lead'])->name('add-lead');
+        Route::post('/add-lead', [AdminController::class, 'add_lead']);
         Route::get('/manage-leads', [AdminController::class, 'manage_leads']);
         Route::get('/delete-lead/{id}', [AdminController::class, 'delete_lead']);
         Route::get('/edit-lead/{id}', [AdminController::class, 'edit_lead']);
